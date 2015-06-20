@@ -7,6 +7,7 @@ using std::cout;
 using std::endl;
 using std::string;
 using nomagic::run;
+using nomagic::Test;
 
 namespace {
 
@@ -48,7 +49,7 @@ void t1()
 {
 	T t("Not good message");
 	t.a(true, "Not good a");
-	t.a(true, "Not good b");
+	t.a(true, string("Not good b"));
 	t.a(true, 0);
 }
 
@@ -57,12 +58,22 @@ void t2()
 	T t("Good message");
 	t.a(false, "ok output 1");
 	t.a(true, "not ok output 2");
-	t.a(false, "ok output 2");
+	t.a(false, string("ok output 2"));
 	t.a(false, 0);
 	cout << "3 messages should be output." << endl;
 }
 
 } // ntest
+
+namespace nloc {
+
+void t1(const char* m)
+{
+	Test t(m);
+	t.a(nomagic::loc("a", 1) == "a(1)", "1");
+}
+
+} // nloc
 
 } // unnamed
 
@@ -78,6 +89,9 @@ int main()
 		"any failure.", ntest::t1);
 
 	dorun("Test outputs messages when there are failures.", ntest::t2);
+	cout << endl;
+
+	run("create a file and line string", nloc::t1);
 
 	cout << "test end" << endl;
 	return 0;

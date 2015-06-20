@@ -47,3 +47,11 @@ Currently following interfaces are available.
 		method if the values passed as the 1st parameter are false.
 		It outputs a message specified at its constructor if
 		any assertion calls failed.
+
+	* loc
+		This function outputs "s(n)" given "s" as the 1st argument
+		and given number n as the second argument.
+
+		for example
+
+		'loc(__FILE__, __LINE__)' will output "filename.cpp(17)".
