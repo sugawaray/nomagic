@@ -1,0 +1,49 @@
+This is a simple unit testing framework named 'nomagic'.
+
+* Intention
+
+I named this library 'nomagic' to express the following intention.
+
+	* I do not want to make anything 'magical' in this library.
+	  I want to make an unit testing framework whose 'internal' working
+	  is easy for users to understand.
+
+I like a unit testing framework and think it is great. But recently I realized
+that its macro conflicts with an implementation of C++ standard library.
+
+I had not known the issue for a long time because the problem had not happened
+in many cases. The problem happens when I include a header of the unit
+testing framework before '<iostream>' header.
+
+The most of unit testing frameworks use many macros because they want to
+do many things for their users. But their uses of macros make it harder for
+users to understand the framework's internals.
+
+The difficulty to understand framework's internal makes it harder for users
+to use the framework freely. And users must read API references and tutorials
+before they use the framework and avoid to do what is not written in the
+documentation.
+
+It is often simple things what users want to do with unit testing frameworks.
+They just want to run functions or methods to test functionalities and just
+want to be notified when they don't get what they expect.
+
+Programming languages have great power today. So I want to make an unit
+testing framework which does not restrict them.
+
+* Usage
+
+Just include "nomagic.h" header.
+
+Currently following interfaces are available.
+
+	* run
+		This function runs the specified function in the child process.
+		It output the specified message if the child process exits
+		with an exit status other than 0.
+
+	* Test
+		This class outputs messages specified at the assertion
+		method if the values passed as the 1st parameter are false.
+		It outputs a message specified at its constructor if
+		any assertion calls failed.
