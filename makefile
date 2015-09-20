@@ -3,19 +3,24 @@ OBJSCPP = testcpp.o
 
 TARGETC = testc
 OBJSC = testc.o nomagicc.o
+TARGETCLIB = libnomagicc.a
 
 CPPFLAGS = -I./
 LD = gcc
 
 RM = /bin/rm
 
-all : $(TARGETCPP) $(TARGETC)
+all : $(TARGETCPP) $(TARGETC) $(TARGETCLIB)
 
 clean : 
-	@-$(RM) $(TARGETCPP) $(OBJSCPP) $(TARGETC) $(OBJSC)
+	@-$(RM) $(TARGETCPP) $(OBJSCPP) $(TARGETC) $(OBJSC)	\
+		$(TARGETCLIB)
 
 $(TARGETC): $(OBJSC)
 	$(LD) -o $@ $(OBJSC) $(LDFLAGSC)
+
+$(TARGETCLIB): nomagicc.o
+	$(AR) $(ARFLAGS) $@ nomagicc.o
 
 .c.o:
 	$(CC) -c -o $@ $(CFLAGS) $(CPPFLAGS) $<
