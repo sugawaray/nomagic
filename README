@@ -31,7 +31,7 @@ want to be notified when they don't get what they expect.
 Programming languages have great power today. So I want to make an unit
 testing framework which does not restrict them.
 
-* Usage
+* Usage(for C++)
 
 Just include "nomagic.h" header.
 
@@ -55,3 +55,8 @@ Currently following interfaces are available.
 		for example
 
 		'loc(__FILE__, __LINE__)' will output "filename.cpp(17)".
+
+* Usage(for C)
+
+include "nomagicc.h" header and use nomagicc.o file at the link time.
+
