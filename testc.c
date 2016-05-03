@@ -19,6 +19,13 @@ t3()
 	testerror("error1");
 }
 
+void
+t4()
+{
+	testerror("error1");
+	testerror("error2");
+}
+
 int
 main()
 {
@@ -38,4 +45,12 @@ main()
 	printf("#'DETAIL: error1'\n");
 	testrun("message A", t3);
 	printf("#Test end: failure cases' outputs(assertion)\n");
+
+	printf("#Test start: multiple testerror calls\n");
+	printf("#should output like below\n");
+	printf("#'FAIL: message A'\n");
+	printf("#'DETAIL: error1'\n");
+	printf("#'DETAIL: error2'\n");
+	testrun("message A", t4);
+	printf("#Test end: multiple testerror calls\n");
 }

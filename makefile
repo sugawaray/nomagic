@@ -5,8 +5,10 @@ TARGETC = testc
 OBJSC = testc.o nomagicc.o
 TARGETCLIB = libnomagicc.a
 
+CFLAGS =
 CPPFLAGS = -I./
 LD = gcc
+LDFLAGSC =
 
 RM = /bin/rm
 

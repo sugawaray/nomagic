@@ -46,6 +46,7 @@ testerror(const char *m)
 		exit(1);
 	}
 	sprintf(buf + bpos, "%s%s\n", detail, m);
+	bpos += l1 + l2 + 1;
 	++nerr;
 }
 
