@@ -58,5 +58,7 @@ Currently following interfaces are available.
 
 * Usage(for C)
 
-include "nomagicc.h" header and use nomagicc.o file at the link time.
+include "nomagicc.h" header and use libnomagicc.a file at the link time.
+By including "nomagiccu.h" header and linking with libnomagiccu.a,
+optional APIs are available.
 
