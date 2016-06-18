@@ -1,0 +1,5 @@
+CC = gcc
+LD = gcc
+CFLAGS = -g -Wall -pedantic -m32
+CPPFLAGS = -I./
+LDFLAGS = -m32

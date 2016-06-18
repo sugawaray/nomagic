@@ -1,17 +1,23 @@
-#include <nomagiccu.h>
+#include <nomagicc.h>
 #include <stdio.h>
+#include <stdarg.h>
 
 static int ind;
 static char buf[10][128];
 
 const char *
-testmeqh(int x, int a)
+testmsg(const char *fmt, ...)
 {
 	int sz;
 	char *r;
+	va_list ap;
 
 	sz = sizeof buf[0] / sizeof buf[0][0];
-	snprintf(buf[ind], sz, "0x%08X != 0x%08X", a, x);
+
+	va_start(ap, fmt);
+	vsnprintf(buf[ind], sz, fmt, ap);
+	va_end(ap);
+
 	buf[ind][sz - 1] = '\0';
 
 	r = buf[ind];

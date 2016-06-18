@@ -1,64 +1,32 @@
-This is a simple unit testing framework named 'nomagic'.
+* ABOUT THIS LIBRARY
 
-* Intention
+This library is an unit test library for C/C++.
 
-I named this library 'nomagic' to express the following intention.
+* API
 
-	* I do not want to make anything 'magical' in this library.
-	  I want to make an unit testing framework whose 'internal' working
-	  is easy for users to understand.
+void testrun(const char *message, void (*f)());
 
-I like a unit testing framework and think it is great. But recently I realized
-that its macro conflicts with an implementation of C++ standard library.
+It calls 'f'.
+It outputs messages when it executes 'f'. "[messages]"s are replaced by the
+parameter 'message' in examples below.
 
-I had not known the issue for a long time because the problem had not happened
-in many cases. The problem happens when I include a header of the unit
-testing framework before '<iostream>' header.
+- if 'f' does not call the testerror function, it outputs
+	"PASS: [message]"
+- if 'f' calls the testerror function, it outputs
+	"FAIL: [message]"
+	"DETAIL: [detail]"
+	"DETAIL: [detail]"
+  "[detail]"s are replaced by the parameter 'message' of testerror calls.
 
-The most of unit testing frameworks use many macros because they want to
-do many things for their users. But their uses of macros make it harder for
-users to understand the framework's internals.
 
-The difficulty to understand framework's internal makes it harder for users
-to use the framework freely. And users must read API references and tutorials
-before they use the framework and avoid to do what is not written in the
-documentation.
+void testerror(const char *message);
 
-It is often simple things what users want to do with unit testing frameworks.
-They just want to run functions or methods to test functionalities and just
-want to be notified when they don't get what they expect.
+It has the effect described in the testrun explanation if it is called in
+test functions.
 
-Programming languages have great power today. So I want to make an unit
-testing framework which does not restrict them.
 
-* Usage(for C++)
+const char *testmsg(const char *format, ...);
 
-Just include "nomagic.h" header.
-
-Currently following interfaces are available.
-
-	* run
-		This function runs the specified function in the child process.
-		It output the specified message if the child process exits
-		with an exit status other than 0.
-
-	* Test
-		This class outputs messages specified at the assertion
-		method if the values passed as the 1st parameter are false.
-		It outputs a message specified at its constructor if
-		any assertion calls failed.
-
-	* loc
-		This function outputs "s(n)" given "s" as the 1st argument
-		and given number n as the second argument.
-
-		for example
-
-		'loc(__FILE__, __LINE__)' will output "filename.cpp(17)".
-
-* Usage(for C)
-
-include "nomagicc.h" header and use libnomagicc.a file at the link time.
-By including "nomagiccu.h" header and linking with libnomagiccu.a,
-optional APIs are available.
+It generates a message like the sprintf function. The difference is
+that it manages several buffers and callers do not need to prepare buffers.
 
