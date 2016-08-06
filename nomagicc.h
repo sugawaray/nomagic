@@ -4,5 +4,6 @@
 void testerror(const char *message);
 void testrun(const char *message, void (*f)());
 const char *testmsg(const char *format, ...);
+const char *testmem(const char *mem, int sz);
 
 #endif

@@ -30,3 +30,8 @@ const char *testmsg(const char *format, ...);
 It generates a message like the sprintf function. The difference is
 that it manages several buffers and callers do not need to prepare buffers.
 
+
+const char *testmem(const char *mem, int sz);
+
+It generates a message which shows the content of the memory specified by
+'mem' and 'sz.
